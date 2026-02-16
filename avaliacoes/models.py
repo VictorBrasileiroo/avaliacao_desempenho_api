@@ -194,7 +194,7 @@ class AvaliacaoDesempenho(models.Model):
             ItemAvaliacaoDesempenho(
                 avaliacao=self,
                 tipo_item_avaliacao_desempenho=tipo,
-                nota=0,  # valor default -> sera recalculada depois
+                nota=1,  # valor default -> sera recalculada depois
             )
             for tipo in tipos
         ]
