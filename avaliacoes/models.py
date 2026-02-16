@@ -57,7 +57,7 @@ class TipoItemAvaliacaoDesempenho(models.Model):
         ordering = ["dimensao", "tipo_item_avaliacao_desempenho"]
 
     def __str__(self):
-        return f"{self.dimensao} && {self.tipo_item_avaliacao_desempenho}"
+        return f"{self.dimensao} - {self.tipo_item_avaliacao_desempenho}"
 
 
 class AvaliacaoDesempenho(models.Model):
@@ -189,17 +189,15 @@ class AvaliacaoDesempenho(models.Model):
         tipos = TipoItemAvaliacaoDesempenho.objects.all()
 
         itens = [
-            TipoItemAvaliacaoDesempenho(
-                avalicao=self,
+            ItemAvaliacaoDesempenho(
+                avaliacao=self,
                 tipo_item_avaliacao_desempenho=tipo,
                 nota=1,  # valor default -> sera recalculada depois
             )
             for tipo in tipos
         ]
 
-        TipoItemAvaliacaoDesempenho.objects.bulk_create(
-            itens
-        )  # utilizei bulk pois irei criar varios itens de uma vez -> mais eficiente dq um loop de save para cada
+        ItemAvaliacaoDesempenho.objects.bulk_create(itens)
 
 
 class ItemAvaliacaoDesempenho(models.Model):
