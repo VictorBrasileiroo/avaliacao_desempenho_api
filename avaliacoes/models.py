@@ -149,6 +149,7 @@ class AvaliacaoDesempenho(models.Model):
                 "Por favor verifique o status da avaliação"
             )
 
+        self.atualizar_nota()
         self.status_avaliacao = StatusAvaliacao.EM_AVALIACAO
         self.save(update_fields=["status_avaliacao"])
 
@@ -163,6 +164,7 @@ class AvaliacaoDesempenho(models.Model):
                 "Por favor verifique o status da avaliação"
             )
 
+        self.atualizar_nota()
         self.status_avaliacao = StatusAvaliacao.CONCLUIDA
         self.save(update_fields=["status_avaliacao"])
 
@@ -192,7 +194,7 @@ class AvaliacaoDesempenho(models.Model):
             ItemAvaliacaoDesempenho(
                 avaliacao=self,
                 tipo_item_avaliacao_desempenho=tipo,
-                nota=1,  # valor default -> sera recalculada depois
+                nota=0,  # valor default -> sera recalculada depois
             )
             for tipo in tipos
         ]

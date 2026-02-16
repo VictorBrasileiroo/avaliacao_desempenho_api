@@ -40,7 +40,6 @@ class ItemAvaliacaoDesempenhoSerializer(serializers.ModelSerializer):
             "nota",
             "observacoes",
         ]
-        read_only_fields = ["avaliacao"]
 
 
 class ListarAvaliacaoDesempenhoSerializer(serializers.ModelSerializer):
