@@ -43,7 +43,7 @@ class ItemAvaliacaoDesempenhoSerializer(serializers.ModelSerializer):
         read_only_fields = ["avaliacao"]
 
 
-class ListaAvaliacaoDesempenhoSerializer(serializers.ModelSerializer):
+class ListarAvaliacaoDesempenhoSerializer(serializers.ModelSerializer):
     colaborador_nome = serializers.CharField(
         source="colaborador.nome",
         read_only=True,
