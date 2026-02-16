@@ -26,8 +26,7 @@ class ItemAvaliacaoDesempenhoInline(admin.TabularInline):
 
     model = ItemAvaliacaoDesempenho
     fields = ["tipo_item_avaliacao_desempenho", "nota", "observacoes"]
-    extra = 0 # problema que resolvi -> por padrao ele vem com extra = 3, por isso que no admin toda vez que ia inciar uma nova avaliacao ele colocava 3 itens defaults la
-    
+    extra = 0  # problema que resolvi -> por padrao ele vem com extra = 3, por isso que no admin toda vez que ia inciar uma nova avaliacao ele colocava 3 itens defaults la
 
 
 @admin.register(AvaliacaoDesempenho)
