@@ -9,7 +9,7 @@ from .models import (
     TipoItemAvaliacaoDesempenho,
     AvaliacaoDesempenho,
     ItemAvaliacaoDesempenho,
-    StatusAvaliacao
+    StatusAvaliacao,
 )
 from .serializers import (
     ColaboradorSerializer,
@@ -37,7 +37,9 @@ class TipoItemAvaliacaoDesempenhoViewSet(viewsets.ModelViewSet):
 
 class AvaliacaoDesempenhoViewSet(viewsets.ModelViewSet):
 
-    queryset = AvaliacaoDesempenho.objects.select_related("colaborador", "supervisor").  prefetch_related("itens")
+    queryset = AvaliacaoDesempenho.objects.select_related(
+        "colaborador", "supervisor"
+    ).prefetch_related("itens")
     filterset_fields = ["status_avaliacao", "colaborador", "supervisor"]
     search_fields = ["colaborador__nome", "supervisor__nome"]
     ordering_fields = ["mes_competencia", "nota"]
@@ -54,9 +56,14 @@ class AvaliacaoDesempenhoViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         """limita a avalicao com base na maquina de estados"""
         avaliacao = self.get_object()
-        estados_permitidos = [StatusAvaliacao.EM_ELABORACAO, StatusAvaliacao.EM_AVALIACAO]
+        estados_permitidos = [
+            StatusAvaliacao.EM_ELABORACAO,
+            StatusAvaliacao.EM_AVALIACAO,
+        ]
         if avaliacao.status_avaliacao not in estados_permitidos:
-            raise ValidationError("A avaliação só pode ser editada nos estados `Em elaboração` ou `Em avaliação`")
+            raise ValidationError(
+                "A avaliação só pode ser editada nos estados `Em elaboração` ou `Em avaliação`"
+            )
         serializer.save()
 
     @extend_schema(
@@ -122,6 +129,7 @@ class ItemAvaliacaoDesempenhoViewSet(viewsets.ModelViewSet):
     1. editar um item -> a nota da avaliacaoo é recalculada
     2. restricao das funcoes de acordo com o status da avaliacao (m.estados)
     """
+
     queryset = ItemAvaliacaoDesempenho.objects.select_related(
         "avaliacao", "tipo_item_avaliacao_desempenho"
     )
@@ -145,4 +153,3 @@ class ItemAvaliacaoDesempenhoViewSet(viewsets.ModelViewSet):
         if avaliacao_id:
             queryset = queryset.filter(avaliacao_id=avaliacao_id)
         return queryset
-    

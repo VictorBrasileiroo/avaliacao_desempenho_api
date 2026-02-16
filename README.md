@@ -26,4 +26,4 @@ Acesse: http://localhost:8000/api/docs/
 2. bibliotecas de PEP8, para fortalecer o uso desse padrao
 3. docker e dockerfile para facilitar a execucacao e uso de db
 4. uso de CI/CD -> nao sei tanto irei aprender na hora
-5. testes unitarios para ajudar na validacao da logica/maquina de estados
+5. testes unitarios para ajudar na validacao da logica/maquina de estados -> rodar local

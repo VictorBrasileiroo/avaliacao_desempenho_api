@@ -4,26 +4,26 @@ from . import views
 
 router = DefaultRouter()
 router.register(
-    r'colaboradores',
+    r"colaboradores",
     views.ColaboradorViewSet,
-    basename='colaborador',
+    basename="colaborador",
 )
 router.register(
-    r'tipos-item-avaliacao',
+    r"tipos-item-avaliacao",
     views.TipoItemAvaliacaoDesempenhoViewSet,
-    basename='tipo-item-avaliacao',
+    basename="tipo-item-avaliacao",
 )
 router.register(
-    r'avaliacoes',
+    r"avaliacoes",
     views.AvaliacaoDesempenhoViewSet,
-    basename='avaliacao',
+    basename="avaliacao",
 )
 router.register(
-    r'itens-avaliacao',
+    r"itens-avaliacao",
     views.ItemAvaliacaoDesempenhoViewSet,
-    basename='item-avaliacao',
+    basename="item-avaliacao",
 )
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]
