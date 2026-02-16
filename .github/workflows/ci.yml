@@ -51,4 +51,4 @@ jobs:
       - name: Verificar PEP8
         run: |
           pip install flake8
-          flake8 avaliacoes/ --max-line-length=120 --exclude=migrations
+          black .
